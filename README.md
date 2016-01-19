@@ -14,7 +14,7 @@ A pocket trainer/lifting app that coaches all levels of lifters and helps plan r
   - Will create their own routines
   - May upload routines to public space 
 
-###Super Pro
+##Super Pro
    - Will use the app purely for scheduling and tracking purposes
    - No frills
    - May upload routines
