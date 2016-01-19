@@ -14,13 +14,13 @@ A pocket trainer/lifting app that coaches all levels of lifters and helps plan r
   - Will create their own routines
   - May upload routines to public space 
 
-##Super Pro
+###Super Pro
    - Will use the app purely for scheduling and tracking purposes
    - No frills
    - May upload routines
 
 
-###Views: 
+##Views: 
   - Home page: Walk me thru vs. Take me to the lifts 
   - Choose a pre-made split vs. add a custom day 
   - Splits: 2 thru 6 day (will show up on calendar every week, specific dates can be moved around. Custom days can be added in)
