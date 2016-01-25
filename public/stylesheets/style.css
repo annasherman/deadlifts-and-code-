@@ -14,6 +14,11 @@ a {
   margin-bottom: 1%;
   padding: 1%;
   padding-top: 2%;
+  height: flex;
+}
+
+.lifts:hover{
+  background-color: #CACACA;
 }
 
 .liftName{
@@ -32,4 +37,8 @@ a {
   border: 1px solid black;
   border-radius: 5px;
   background-color: white;
+}
+
+.addToButton:hover{
+  font-weight: bold;
 }

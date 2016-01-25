@@ -6,12 +6,12 @@ var gulp = require('gulp'),
 
 var watch = require('gulp-watch');
 watch(['./public/javascripts/app.js'], function(){
-  console.log('app has been modified. recompile');
+  console.log('app.js has been modified. recompile');
   gulp.start('default');
 });
 
 watch(['./public/javascripts/app-workout.js'], function(){
-  console.log('app has been modified. recompile');
+  console.log('app-workout has been modified. recompile');
   gulp.start('workout');
 });
 
@@ -28,6 +28,6 @@ gulp.task('workout', function() {
   return browserify('./public/javascripts/app-workout.js')
       .transform("babelify", {presets: ["es2015", "react"]})
       .bundle()
-      .pipe(source('build.js'))
+      .pipe(source('build-workout.js'))
       .pipe(gulp.dest('./public/build/'))
 })

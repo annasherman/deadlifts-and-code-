@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var model = require('../models/Exercise');
+var liftsChosen = [];
 
 // var request = require('request');
 // var cheerio = require('cheerio');
@@ -15,41 +16,41 @@ router.get('/exercises', function(req,res,next){
     if (error) {
       console.log(error);
     };
-    res.render('index', { title: 'fitness'});
+    res.render('allexercises', { title: 'fitness'});
   });
 });
+
+router.get('/exercises/api', function(req, res) {
+  model.find(function(error, exercises){
+    if (error) {
+      console.log(error);
+    };
+    res.json(exercises);
+  });
+});
+
 
 router.post('/workout', function(req, res, next) {
   console.log(req.body);
   var liftId = req.body.id;
+  var liftName = req.body.name;
+  var liftAuthor = req.body.user;
+  var liftDesc = req.body.desc;
   model.find(function(error, lifts){
     if (error) console.log(error);
-    var currentLifts = [];
-    for (var lift in lifts) {
-      if (lifts[lift]._id == liftId) {
-        currentLifts.push(lifts[lift]);
-      }
-    }
-    res.render('index');
+    liftsChosen.push({id: liftId, name: liftName, user: liftAuthor, desc: liftDesc});
   });
 });
 
 router.get('/workout', function(req, res, next) {
-  res.render('index');
+  console.log(liftsChosen);
+  //res.json(liftsChosen);
+  res.render('workout', {data: liftsChosen});
 });
 
-//cheerio code before the web scraping idea was abandoned
-// router.get('/exercises', function(req,res){
-//   request('https://wger.de/en/exercise/overview/', function(err,res,body){
-//     if(!err && res.statusCode == 200){
-//       console.log('ok');
-//       var $ = cheerio.load(body);
-//       $() //selector goes here
-//     } else {
-//       console.log(err);
-//     }
-//   });
-// });
+router.get('/workout/api', function(req, res) {
+  res.json(liftsChosen);
+});
 
 
 module.exports = router;

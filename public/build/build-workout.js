@@ -28861,66 +28861,68 @@ module.exports = require('./lib/React');
 'use strict';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
+var $ = require('jquery');
+var Workout = require('./workoutBuilder');
+
+$(document).ready(function () {
+  console.log('sup');
+
+  ReactDOM.render(React.createElement(Workout, null), document.getElementById('workoutBuilder'));
+
+  //:)
+});
+
+},{"./workoutBuilder":161,"jquery":28,"react":159,"react-dom":30}],161:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
 var $ = require('jquery');
 
-//template
-var Exercise = React.createClass({
-  displayName: 'Exercise',
+var Lift = React.createClass({
+  displayName: 'Lift',
 
   render: function render() {
     return React.createElement(
-      'form',
-      { id: 'exerciseModuleForm', action: '/workout', method: 'post' },
+      'div',
+      null,
       React.createElement(
-        'div',
-        { className: 'lifts col-sm-3 col-md-4' },
-        React.createElement(
-          'p',
-          { className: 'liftName' },
-          'Lift: ',
-          React.createElement(
-            'strong',
-            null,
-            this.props.Name
-          )
-        ),
-        React.createElement(
-          'p',
-          { className: 'userName' },
-          'Author: ',
-          React.createElement(
-            'strong',
-            null,
-            this.props.User
-          )
-        ),
-        React.createElement(
-          'p',
-          { className: 'liftDesc' },
-          'Equipment: ',
-          React.createElement(
-            'strong',
-            null,
-            this.props.Desc
-          )
-        ),
-        React.createElement('input', { type: 'hidden', name: 'id', value: this.props.Id }),
-        React.createElement('input', { type: 'hidden', name: 'user', value: this.props.User }),
-        React.createElement('input', { type: 'hidden', name: 'desc', value: this.props.Desc }),
-        React.createElement('input', { type: 'hidden', name: 'name', value: this.props.Name }),
-        React.createElement(
-          'button',
-          { type: 'submit', className: 'addToButton', id: 'addToBtnId' },
-          'Add to Workout'
-        )
+        'p',
+        null,
+        'Lift: ',
+        this.props.Name
+      ),
+      React.createElement(
+        'p',
+        null,
+        'Sets: ',
+        React.createElement('textarea', null)
+      ),
+      React.createElement(
+        'p',
+        null,
+        'Reps: ',
+        React.createElement('textarea', null)
+      ),
+      React.createElement(
+        'p',
+        null,
+        'Weight: ',
+        React.createElement('textarea', null)
+      ),
+      React.createElement(
+        'p',
+        null,
+        'Rest: ',
+        React.createElement('textarea', null)
       )
     );
   }
 });
 
 //initialize, get your data in component did mount, map thru your data array in render
-var ExerciseList = React.createClass({
-  displayName: 'ExerciseList',
+var Workout = React.createClass({
+  displayName: 'Workout',
 
   getInitialState: function getInitialState() {
     return { data: [] };
@@ -28929,10 +28931,11 @@ var ExerciseList = React.createClass({
     console.log('made it to component did mount');
     //what happens when the component is attached to the dom
     $.ajax({
-      url: '/api',
-      dataType: 'json',
+      url: '/workout/api',
+      type: 'get',
       success: function (data) {
         console.log('the ajax call worked');
+        console.log(data);
         this.setState({ data: data });
       }.bind(this),
       error: function (xhr, status, err) {
@@ -28946,38 +28949,58 @@ var ExerciseList = React.createClass({
     console.log('-----data-------');
     //console.log(this.props);
     console.log(this.state.data);
-    var exerciseNodes = this.state.data.map(function (lift) {
-      return React.createElement(Exercise, { Name: lift.Name, Desc: lift.Description, User: lift.User, Id: lift._id });
+    var workoutList = this.state.data.map(function (lift) {
+      return React.createElement(Lift, { ID: lift.id, Name: lift.name, Desc: lift.desc, Author: lift.user });
     });
+    if (this.state.data.length === 0) {
+      workoutList = React.createElement(
+        'div',
+        null,
+        React.createElement(
+          'h3',
+          null,
+          'You havent added any lifts yet!'
+        ),
+        React.createElement(
+          'p',
+          null,
+          'Try taking a peek at our ',
+          React.createElement(
+            'a',
+            { href: '/exercises' },
+            'exercise database'
+          )
+        )
+      );
+    } else {
+      var moreLifts = React.createElement(
+        'p',
+        null,
+        React.createElement(
+          'a',
+          { href: '/exercises' },
+          'Click for MOAR lifts.'
+        )
+      );
+    };
     return React.createElement(
       'section',
       null,
-      exerciseNodes
+      React.createElement(
+        'h2',
+        null,
+        React.createElement(
+          'textarea',
+          null,
+          'Your Workout'
+        )
+      ),
+      workoutList,
+      moreLifts
     );
   }
 });
 
-module.exports = ExerciseList;
+module.exports = Workout;
 
-},{"jquery":28,"react":159}],161:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var ReactDOM = require('react-dom');
-var ExerciseList = require('./allexercises');
-var $ = require('jquery');
-
-$(document).ready(function () {
-  console.log('sup');
-  ReactDOM.render(React.createElement(ExerciseList, { title: 'fitness' }), document.getElementById('allexercises'));
-
-  addToWorkout();
-});
-
-function addToWorkout() {
-  $('#exerciseModuleForm').on('submit', function (event) {
-    event.preventDefault();
-  });
-}
-
-},{"./allexercises":160,"jquery":28,"react":159,"react-dom":30}]},{},[161]);
+},{"jquery":28,"react":159}]},{},[160]);

@@ -5,15 +5,19 @@ var $ = require('jquery');
 var Exercise = React.createClass({
   render: function() {
       return (
-          <form action="/workout" method="post">
-            <div className="lifts"><p className="liftName">Lift: <strong>{this.props.Name}</strong></p>
+          <form id="exerciseModuleForm" action="/workout" method="post">
+            <div className="lifts col-sm-3 col-md-4"><p className="liftName">Lift: <strong>{this.props.Name}</strong></p>
             <p className="userName">Author: <strong>{this.props.User}</strong></p>
             <p className="liftDesc">Equipment: <strong>{this.props.Desc}</strong></p>
+
+
             <input type="hidden" name="id" value={this.props.Id}></input>
             <input type="hidden" name="user" value={this.props.User}></input>
             <input type="hidden" name="desc" value={this.props.Desc}></input>
             <input type="hidden" name="name" value={this.props.Name}></input>
-            <button type="submit" className="addToButton">Add to Workout</button>
+
+
+            <button type="submit" className="addToButton" id="addToBtnId">Add to Workout</button>
             </div>
           </form>
 
