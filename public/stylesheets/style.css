@@ -1,0 +1,35 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: aliceblue;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.lifts {
+  border: 3px solid black;
+  border-radius: 5px;
+  margin-bottom: 1%;
+  padding: 1%;
+  padding-top: 2%;
+}
+
+.liftName{
+
+}
+
+.userName{
+
+}
+
+.liftDesc{
+
+}
+
+.addToButton{
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+}
