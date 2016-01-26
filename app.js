@@ -7,11 +7,31 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 require('./db/database');
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var api = require('./routes/api');
+var accounts = require('./routes/accounts')
 
 var app = express();
+
+app.use(require('express-session')({
+  secret: 'yellow polka dot bikni',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+//end sessions
+
+//configure passport
+var Account = require('./models/Account');
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
+//end passport config
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,7 +47,7 @@ app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/accounts', accounts);
 app.use('/api', api);
 
 // catch 404 and forward to error handler

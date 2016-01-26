@@ -47,7 +47,7 @@ var Workout = React.createClass({
     console.log(this.state.data);
     var workoutList = this.state.data.map(function(lift){
       return (
-      <Lift ID={lift.id} Name={lift.name} Desc={lift.desc} Author={lift.user} />
+      <Lift ID={lift.id} Name={lift.name} Desc={lift.desc} Author={lift.author} />
       );
     });
     if (this.state.data.length === 0){

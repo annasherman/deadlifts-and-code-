@@ -28873,7 +28873,7 @@ var Exercise = React.createClass({
       { id: 'exerciseModuleForm', action: '/workout', method: 'post' },
       React.createElement(
         'div',
-        { className: 'lifts col-sm-3 col-md-4' },
+        { className: 'lifts' },
         React.createElement(
           'p',
           { className: 'liftName' },

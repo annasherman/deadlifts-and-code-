@@ -14,8 +14,9 @@ a {
   margin-bottom: 1%;
   padding: 1%;
   padding-top: 2%;
-  height: flex;
+  height: 20%;
 }
+
 
 .lifts:hover{
   background-color: #CACACA;
@@ -42,3 +43,30 @@ a {
 .addToButton:hover{
   font-weight: bold;
 }
+
+
+@media only screen and (min-width: 736px) {
+  .mobile-hide {
+    display: inherit;
+  }
+  #container {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+  .recipe {
+    width: 48%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .recipe {
+    width: 32%;
+  }
+}
+@media only screen and (min-width: 1600px) {
+  .recipe {
+    width: 19%;
+  }
+}
+
+

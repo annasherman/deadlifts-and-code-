@@ -28950,7 +28950,7 @@ var Workout = React.createClass({
     //console.log(this.props);
     console.log(this.state.data);
     var workoutList = this.state.data.map(function (lift) {
-      return React.createElement(Lift, { ID: lift.id, Name: lift.name, Desc: lift.desc, Author: lift.user });
+      return React.createElement(Lift, { ID: lift.id, Name: lift.name, Desc: lift.desc, Author: lift.author });
     });
     if (this.state.data.length === 0) {
       workoutList = React.createElement(

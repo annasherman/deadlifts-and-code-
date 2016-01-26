@@ -17,6 +17,11 @@
 
 </head>
 <body>
- {{{body}}}
+    {{#if currentUser}}
+    Welcome {{currentUser}}
+    <a href="/accounts/leave">Logout</a>
+    {{/if}}
+
+    {{{body}}}
 </body>
 </html>
