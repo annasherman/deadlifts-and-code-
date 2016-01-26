@@ -56,18 +56,18 @@ router.post('/workout', function(req, res, next) {
 });
 
 router.get('/workout', function(req, res, next) {
-  console.log(liftsChosen);
+  console.log(liftsChosen.length);
   console.log('-------user-------')
   console.log(req.user);
   if (req.user && liftsChosen.length > 0){
-    for (var lift in liftsChosen) {
-      if (liftsChosen[lift].user == req.user._id) {
+    //for (var lift in liftsChosen) {
+      //if (liftsChosen[lift].user == req.user._id) {
         res.render('workout', {data: liftsChosen, currentUser: req.user.username, currentUserId: req.user._id});
-      }
-    }
+      //}
+    //}
   } else if (req.user) {
-    res.render('workout', {data: liftsChosen, currentUser: req.user.username, currentUserId: req.user._id});
-  }
+    res.render('workout', {data: liftsChosen, currentUser: req.user.username});
+  };
 });
 
 router.get('/workout/api', function(req, res) {
