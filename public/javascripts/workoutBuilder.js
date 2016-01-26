@@ -6,12 +6,13 @@ var Lift = React.createClass({
     return (
 
 
-    <div>
+    <div className="workoutModule">
     <p>Lift: {this.props.Name}</p>
-    <p>Sets: <textarea /></p>
-    <p>Reps: <textarea /></p>
+    <p>Desc: {this.props.Desc}</p>
+    <p>Sets: <textarea placeholder="5" /></p>
+    <p>Reps: <textarea placeholder="5" /></p>
     <p>Weight: <textarea /></p>
-    <p>Rest: <textarea /></p>
+    <p>Rest: <textarea placeholder="90s" /></p>
     </div>
     )
   }
@@ -27,7 +28,7 @@ var Workout = React.createClass({
     console.log('made it to component did mount');
     //what happens when the component is attached to the dom
     $.ajax({
-      url: '/workout/api',
+      url: '/workoutapi',
       type: 'get',
       success: function(data){
         console.log('the ajax call worked');
@@ -47,7 +48,7 @@ var Workout = React.createClass({
     console.log(this.state.data);
     var workoutList = this.state.data.map(function(lift){
       return (
-      <Lift ID={lift.id} Name={lift.name} Desc={lift.desc} Author={lift.author} />
+      <Lift Name={lift.Name} Desc={lift.Description} />
       );
     });
     if (this.state.data.length === 0){

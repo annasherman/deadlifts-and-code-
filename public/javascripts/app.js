@@ -11,12 +11,19 @@ $(document).ready(function() {
   );
 
 addToWorkout();
+changeColor();
 
 });
 
 function addToWorkout(){
-  $('#exerciseModuleForm').on('submit', function(event){
-    event.preventDefault();
-  })
+  $('.exerciseModuleForm').on('submit', function(e){
+    e.preventDefault();
+  });
+}
 
+function changeColor(){
+$('.addToButton').click(function(){
+  console.log('click');
+  $('.lifts').css('background-color', 'red');
+});
 }

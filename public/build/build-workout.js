@@ -28866,12 +28866,21 @@ var $ = require('jquery');
 var Workout = require('./workoutBuilder');
 
 $(document).ready(function () {
-  console.log('sup');
+  console.log('workout-app.js');
 
   ReactDOM.render(React.createElement(Workout, null), document.getElementById('workoutBuilder'));
-
-  //:)
+  $('.addToButton').click(function () {
+    console.log('click');
+    $('.lifts').css('color', 'red');
+  });
 });
+
+function changeColor() {
+  $('.addToButton').click(function () {
+    console.log('click');
+    $('.lifts').css('color', 'red');
+  });
+}
 
 },{"./workoutBuilder":161,"jquery":28,"react":159,"react-dom":30}],161:[function(require,module,exports){
 'use strict';
@@ -28885,7 +28894,7 @@ var Lift = React.createClass({
   render: function render() {
     return React.createElement(
       'div',
-      null,
+      { className: 'workoutModule' },
       React.createElement(
         'p',
         null,
@@ -28895,14 +28904,20 @@ var Lift = React.createClass({
       React.createElement(
         'p',
         null,
+        'Desc: ',
+        this.props.Desc
+      ),
+      React.createElement(
+        'p',
+        null,
         'Sets: ',
-        React.createElement('textarea', null)
+        React.createElement('textarea', { placeholder: '5' })
       ),
       React.createElement(
         'p',
         null,
         'Reps: ',
-        React.createElement('textarea', null)
+        React.createElement('textarea', { placeholder: '5' })
       ),
       React.createElement(
         'p',
@@ -28914,7 +28929,7 @@ var Lift = React.createClass({
         'p',
         null,
         'Rest: ',
-        React.createElement('textarea', null)
+        React.createElement('textarea', { placeholder: '90s' })
       )
     );
   }
@@ -28931,7 +28946,7 @@ var Workout = React.createClass({
     console.log('made it to component did mount');
     //what happens when the component is attached to the dom
     $.ajax({
-      url: '/workout/api',
+      url: '/workoutapi',
       type: 'get',
       success: function (data) {
         console.log('the ajax call worked');
@@ -28950,7 +28965,7 @@ var Workout = React.createClass({
     //console.log(this.props);
     console.log(this.state.data);
     var workoutList = this.state.data.map(function (lift) {
-      return React.createElement(Lift, { ID: lift.id, Name: lift.name, Desc: lift.desc, Author: lift.author });
+      return React.createElement(Lift, { Name: lift.Name, Desc: lift.Description });
     });
     if (this.state.data.length === 0) {
       workoutList = React.createElement(

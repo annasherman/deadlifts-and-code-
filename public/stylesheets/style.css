@@ -17,9 +17,22 @@ a {
   height: 20%;
 }
 
-
 .lifts:hover{
   background-color: #CACACA;
+}
+
+.workoutModule{
+  border: 1px solid black;
+  margin-bottom: 2%;
+  padding: 1%;
+}
+
+.workoutModule:hover{
+  background-color: #C4C4C4;
+}
+
+textarea{
+  outline: none;
 }
 
 .liftName{

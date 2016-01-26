@@ -4,8 +4,6 @@ var model = require('../models/Exercise');
 //need to modify this variable based on who is logged in.
 var liftsChosen = [];
 
-// var request = require('request');
-// var cheerio = require('cheerio');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -22,26 +20,28 @@ router.get('/exercises', function(req,res,next){
       console.log(error);
     };
     if (req.user){
-      res.render('allexercises', {title: 'fitness', currentUser: req.user.username})
+      console.log(req.user);
+      res.render('allexercises', {title: 'fitness', currentUser: req.user})
     } else {
-      res.render('allexercises', { title: 'fitness'});
+      res.render('allexercises', {title: 'fitness'});
     }
   });
 });
 
-router.get('/exercises/api', function(req, res) {
-  model.find(function(error, exercises){
-    if (error) {
-      console.log(error);
-    };
-    res.json(exercises);
-  });
-});
+// router.get('/exercises/api', function(req, res) {
+//   model.find(function(error, exercises){
+//     if (error) {
+//       console.log(error);
+//     };
+//     res.json(exercises);
+//   });
+// });
 
 
 router.post('/workout', function(req, res, next) {
   console.log(req.body);
   console.log(req.user);
+  //model.save
   var liftId = req.body.id;
   var liftName = req.body.name;
   var liftAuthor = req.body.user;
@@ -66,20 +66,20 @@ router.get('/workout', function(req, res, next) {
       //}
     //}
   } else if (req.user) {
-    res.render('workout', {data: liftsChosen, currentUser: req.user.username});
+    res.render('workout', {data: liftsChosen, currentUser: req.user});
   };
 });
 
-router.get('/workout/api', function(req, res) {
-  res.json(liftsChosen);
-});
+// router.get('/workout/api', function(req, res) {
+//   res.json(liftsChosen);
+// });
 
-router.post('/workout/api', function(req, res, next) {
-  model.create(req.body, function(error, exercise){
-    if (error) console.log(error);
-    res.json(exercise);
-  });
-});
+// router.post('/workout/api', function(req, res, next) {
+//   model.create(req.body, function(error, exercise){
+//     if (error) console.log(error);
+//     res.json(exercise);
+//   });
+// });
 
 
 module.exports = router;

@@ -28870,7 +28870,7 @@ var Exercise = React.createClass({
   render: function render() {
     return React.createElement(
       'form',
-      { id: 'exerciseModuleForm', action: '/workout', method: 'post' },
+      { className: 'exerciseModuleForm', action: '/workoutapi', method: 'post' },
       React.createElement(
         'div',
         { className: 'lifts' },
@@ -28882,6 +28882,16 @@ var Exercise = React.createClass({
             'strong',
             null,
             this.props.Name
+          )
+        ),
+        React.createElement(
+          'p',
+          { className: 'liftMuscle' },
+          'Muscle: ',
+          React.createElement(
+            'strong',
+            null,
+            this.props.Muscle
           )
         ),
         React.createElement(
@@ -28905,9 +28915,12 @@ var Exercise = React.createClass({
           )
         ),
         React.createElement('input', { type: 'hidden', name: 'id', value: this.props.Id }),
-        React.createElement('input', { type: 'hidden', name: 'user', value: this.props.User }),
-        React.createElement('input', { type: 'hidden', name: 'desc', value: this.props.Desc }),
-        React.createElement('input', { type: 'hidden', name: 'name', value: this.props.Name }),
+        React.createElement('input', { type: 'hidden', name: 'Author', value: this.props.User }),
+        React.createElement('input', { type: 'hidden', name: 'Description', value: this.props.Desc }),
+        React.createElement('input', { type: 'hidden', name: 'Muscle', value: this.props.Muscle }),
+        React.createElement('input', { type: 'hidden', name: 'Name', value: this.props.Name }),
+        React.createElement('input', { type: 'hidden', name: 'accountUser', value: this.props.currentUser }),
+        React.createElement('input', { type: 'hidden', name: 'accountUserId', value: this.props.currentUserId }),
         React.createElement(
           'button',
           { type: 'submit', className: 'addToButton', id: 'addToBtnId' },
@@ -28947,7 +28960,7 @@ var ExerciseList = React.createClass({
     //console.log(this.props);
     console.log(this.state.data);
     var exerciseNodes = this.state.data.map(function (lift) {
-      return React.createElement(Exercise, { Name: lift.Name, Desc: lift.Description, User: lift.User, Id: lift._id });
+      return React.createElement(Exercise, { Name: lift.Name, Desc: lift.Description, User: lift.User, Muscle: lift.MuscleGroup, Id: lift._id });
     });
     return React.createElement(
       'section',
@@ -28972,11 +28985,19 @@ $(document).ready(function () {
   ReactDOM.render(React.createElement(ExerciseList, { title: 'fitness' }), document.getElementById('allexercises'));
 
   addToWorkout();
+  changeColor();
 });
 
 function addToWorkout() {
-  $('#exerciseModuleForm').on('submit', function (event) {
-    event.preventDefault();
+  $('.exerciseModuleForm').on('submit', function (e) {
+    e.preventDefault();
+  });
+}
+
+function changeColor() {
+  $('.addToButton').click(function () {
+    console.log('click');
+    $('.lifts').css('background-color', 'red');
   });
 }
 
