@@ -28919,8 +28919,7 @@ var Exercise = React.createClass({
         React.createElement('input', { type: 'hidden', name: 'Description', value: this.props.Desc }),
         React.createElement('input', { type: 'hidden', name: 'Muscle', value: this.props.Muscle }),
         React.createElement('input', { type: 'hidden', name: 'Name', value: this.props.Name }),
-        React.createElement('input', { type: 'hidden', name: 'accountUser', value: this.props.currentUser }),
-        React.createElement('input', { type: 'hidden', name: 'accountUserId', value: this.props.currentUserId }),
+        React.createElement('input', { type: 'hidden', name: 'accountUser', value: this.props.CurrentUser }),
         React.createElement(
           'button',
           { type: 'submit', className: 'addToButton', id: 'addToBtnId' },
@@ -28960,7 +28959,7 @@ var ExerciseList = React.createClass({
     //console.log(this.props);
     console.log(this.state.data);
     var exerciseNodes = this.state.data.map(function (lift) {
-      return React.createElement(Exercise, { Name: lift.Name, Desc: lift.Description, User: lift.User, Muscle: lift.MuscleGroup, Id: lift._id });
+      return React.createElement(Exercise, { Name: lift.Name, Desc: lift.Description, User: lift.User, Muscle: lift.MuscleGroup, Id: lift._id, CurrentUser: viewModel.username });
     });
     return React.createElement(
       'section',

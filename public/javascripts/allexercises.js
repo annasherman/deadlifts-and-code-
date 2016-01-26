@@ -16,8 +16,7 @@ var Exercise = React.createClass({
             <input type="hidden" name="Description" value={this.props.Desc}></input>
             <input type="hidden" name="Muscle" value={this.props.Muscle}></input>
             <input type="hidden" name="Name" value={this.props.Name}></input>
-            <input type="hidden" name="accountUser" value={this.props.currentUser}></input>
-            <input type="hidden" name="accountUserId" value={this.props.currentUserId}></input>
+            <input type="hidden" name="accountUser" value={this.props.CurrentUser}></input>
 
             <button type="submit" className="addToButton" id="addToBtnId">Add to Workout</button>
             </div>
@@ -55,7 +54,7 @@ var ExerciseList = React.createClass({
     console.log(this.state.data);
     var exerciseNodes = this.state.data.map(function(lift){
       return (
-      <Exercise Name={lift.Name} Desc={lift.Description} User={lift.User} Muscle={lift.MuscleGroup} Id={lift._id} />
+      <Exercise Name={lift.Name} Desc={lift.Description} User={lift.User} Muscle={lift.MuscleGroup} Id={lift._id} CurrentUser={viewModel.username} />
       );
     });
     return (

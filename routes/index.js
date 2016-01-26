@@ -21,7 +21,10 @@ router.get('/exercises', function(req,res,next){
     };
     if (req.user){
       console.log(req.user);
-      res.render('allexercises', {title: 'fitness', currentUser: req.user})
+      res.render('allexercises', {title: 'fitness',
+        username: req.user.username,
+        id: req.user["_id"]
+      })
     } else {
       res.render('allexercises', {title: 'fitness'});
     }
@@ -38,22 +41,22 @@ router.get('/exercises', function(req,res,next){
 // });
 
 
-router.post('/workout', function(req, res, next) {
-  console.log(req.body);
-  console.log(req.user);
-  //model.save
-  var liftId = req.body.id;
-  var liftName = req.body.name;
-  var liftAuthor = req.body.user;
-  var liftDesc = req.body.desc;
-  var user = req.user._id;
-  if (req.user) {
-    model.find(function(error, lifts){
-      if (error) console.log(error);
-      liftsChosen.push({id: liftId, name: liftName, author: liftAuthor, desc: liftDesc, user: user});
-    });
-  };
-});
+// router.post('/workout', function(req, res, next) {
+//   console.log(req.body);
+//   console.log(req.user);
+//   //model.save
+//   var liftId = req.body.id;
+//   var liftName = req.body.name;
+//   var liftAuthor = req.body.user;
+//   var liftDesc = req.body.desc;
+//   var user = req.user._id;
+//   if (req.user) {
+//     model.find(function(error, lifts){
+//       if (error) console.log(error);
+//       liftsChosen.push({id: liftId, name: liftName, author: liftAuthor, desc: liftDesc, user: user});
+//     });
+//   };
+// });
 
 router.get('/workout', function(req, res, next) {
   console.log(liftsChosen.length);
