@@ -6,13 +6,13 @@ var Lift = React.createClass({
     return (
 
 
-    <div className="workoutModule">
+    <div className="workoutModule col-lg-3 col-md-4 col-sm-6 col-xs-12">
     <p>Lift: {this.props.Name}</p>
     <p>Desc: {this.props.Desc}</p>
-    <p>Sets: <textarea placeholder="5" /></p>
-    <p>Reps: <textarea placeholder="5" /></p>
-    <p>Weight: <textarea /></p>
-    <p>Rest: <textarea placeholder="90s" /></p>
+    <p>Sets: <input type='text' placeholder="5" /></p>
+    <p>Reps: <input type='text' placeholder="5" /></p>
+    <p>Weight: <input type='text' /></p>
+    <p>Rest: <input type='text' placeholder="90s" /></p>
     </div>
     )
   }
@@ -60,7 +60,7 @@ var Workout = React.createClass({
     return (
 
         <section>
-        <h2><textarea>Your Workout</textarea></h2>
+        <h2><input placeholder="Your Workout"></input></h2>
         {workoutList}
         {moreLifts}
         </section>

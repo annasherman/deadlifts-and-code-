@@ -10,16 +10,7 @@ $(document).ready(function() {
     <Workout />,
     document.getElementById('workoutBuilder')
   );
-$('.addToButton').click(function(){
-  console.log('click');
-  $('.lifts').css('color', 'red');
-});
 
 });
 
-function changeColor(){
-$('.addToButton').click(function(){
-  console.log('click');
-  $('.lifts').css('color', 'red');
-});
-}
+

@@ -1,7 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: aliceblue;
+  background-color: white;
 }
 
 a {
@@ -9,15 +9,15 @@ a {
 }
 
 .lifts {
-  border: 3px solid black;
+  border: 1px dotted black;
   border-radius: 5px;
   margin-bottom: 1%;
   padding: 1%;
   padding-top: 2%;
-  height: 20%;
+  height: 23rem;
 }
 
-.lifts:hover{
+.lifts a:hover{
   background-color: #CACACA;
 }
 
@@ -25,11 +25,13 @@ a {
   border: 1px solid black;
   margin-bottom: 2%;
   padding: 1%;
+  height: 23rem;
 }
 
 .workoutModule:hover{
   background-color: #C4C4C4;
 }
+
 
 textarea{
   outline: none;
@@ -55,6 +57,25 @@ textarea{
 
 .addToButton:hover{
   font-weight: bold;
+  background-color: green;
+}
+
+.addToButton:visited{
+  color: red;
+}
+
+.addToButton:active{
+  color: #7B7B7B;
+}
+
+
+
+.lifts a:active{
+  background-color: red;
+}
+
+.lifts a:visited{
+  background-color: red;
 }
 
 

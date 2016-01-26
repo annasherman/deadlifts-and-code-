@@ -28873,7 +28873,7 @@ var Exercise = React.createClass({
       { className: 'exerciseModuleForm', action: '/workoutapi', method: 'post' },
       React.createElement(
         'div',
-        { className: 'lifts' },
+        { className: 'lifts col-lg-3 col-md-4 col-sm-6 col-xs-12' },
         React.createElement(
           'p',
           { className: 'liftName' },
@@ -28982,22 +28982,15 @@ var $ = require('jquery');
 
 $(document).ready(function () {
   console.log('sup');
+
   ReactDOM.render(React.createElement(ExerciseList, { title: 'fitness' }), document.getElementById('allexercises'));
 
   addToWorkout();
-  changeColor();
 });
 
 function addToWorkout() {
   $('.exerciseModuleForm').on('submit', function (e) {
     e.preventDefault();
-  });
-}
-
-function changeColor() {
-  $('.addToButton').click(function () {
-    console.log('click');
-    $('.lifts').css('background-color', 'red');
   });
 }
 

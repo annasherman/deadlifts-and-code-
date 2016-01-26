@@ -67,7 +67,10 @@ router.get('/workout', function(req, res, next) {
     //}
   } else if (req.user) {
     res.render('workout', {data: liftsChosen, currentUser: req.user});
-  };
+  } else {
+    res.redirect('/');
+  }
+
 });
 
 // router.get('/workout/api', function(req, res) {

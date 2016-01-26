@@ -6,7 +6,7 @@ var Exercise = React.createClass({
   render: function() {
       return (
           <form className="exerciseModuleForm" action="/workoutapi" method="post">
-            <div className="lifts"><p className="liftName">Lift: <strong>{this.props.Name}</strong></p>
+            <div className="lifts col-lg-3 col-md-4 col-sm-6 col-xs-12"><p className="liftName">Lift: <strong>{this.props.Name}</strong></p>
             <p className="liftMuscle">Muscle: <strong>{this.props.Muscle}</strong></p>
             <p className="userName">Author: <strong>{this.props.User}</strong></p>
             <p className="liftDesc">Equipment: <strong>{this.props.Desc}</strong></p>

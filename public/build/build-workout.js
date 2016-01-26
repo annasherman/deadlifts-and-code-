@@ -28869,18 +28869,7 @@ $(document).ready(function () {
   console.log('workout-app.js');
 
   ReactDOM.render(React.createElement(Workout, null), document.getElementById('workoutBuilder'));
-  $('.addToButton').click(function () {
-    console.log('click');
-    $('.lifts').css('color', 'red');
-  });
 });
-
-function changeColor() {
-  $('.addToButton').click(function () {
-    console.log('click');
-    $('.lifts').css('color', 'red');
-  });
-}
 
 },{"./workoutBuilder":161,"jquery":28,"react":159,"react-dom":30}],161:[function(require,module,exports){
 'use strict';
@@ -28894,7 +28883,7 @@ var Lift = React.createClass({
   render: function render() {
     return React.createElement(
       'div',
-      { className: 'workoutModule' },
+      { className: 'workoutModule col-lg-3 col-md-4 col-sm-6 col-xs-12' },
       React.createElement(
         'p',
         null,
@@ -28911,25 +28900,25 @@ var Lift = React.createClass({
         'p',
         null,
         'Sets: ',
-        React.createElement('textarea', { placeholder: '5' })
+        React.createElement('input', { type: 'text', placeholder: '5' })
       ),
       React.createElement(
         'p',
         null,
         'Reps: ',
-        React.createElement('textarea', { placeholder: '5' })
+        React.createElement('input', { type: 'text', placeholder: '5' })
       ),
       React.createElement(
         'p',
         null,
         'Weight: ',
-        React.createElement('textarea', null)
+        React.createElement('input', { type: 'text' })
       ),
       React.createElement(
         'p',
         null,
         'Rest: ',
-        React.createElement('textarea', { placeholder: '90s' })
+        React.createElement('input', { type: 'text', placeholder: '90s' })
       )
     );
   }
@@ -29004,11 +28993,7 @@ var Workout = React.createClass({
       React.createElement(
         'h2',
         null,
-        React.createElement(
-          'textarea',
-          null,
-          'Your Workout'
-        )
+        React.createElement('input', { placeholder: 'Your Workout' })
       ),
       workoutList,
       moreLifts
